@@ -1,0 +1,23 @@
+{
+  "name": "gae-react-flux-todos",
+  "version": "0.0.1",
+  "description": "A simple TODOS app in React and Flux, built on top of Google App Engine",
+  "author": "Ben Grunfeld",
+  "repository": "https://github.com/bengrunfeld/gae-react-flux-todos",
+  "readme": "https://github.com/bengrunfeld/gae-react-flux-todos/blob/master/README.md",
+  "license": "Apache 2",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-clean": "^0.3.1",
+    "gulp-react": "^2.0.0",
+    "gulp-replace": "^0.5.3",
+    "browserify": "^9.0.3",
+    "react": "^0.12.2",
+    "reactify": "^0.13.1",
+    "es6-promise": "^1.0.0",
+    "flux": "^2.0.1",
+    "object-assign": "^1.0.0",
+    "jest-cli": "^0.4.0",
+    "react-tools": "^0.12.0"
+  }
+}
