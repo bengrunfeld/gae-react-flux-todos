@@ -6,7 +6,7 @@ var App = React.createClass({
   render:function(){
     var todoNodes = this.props.data.map(function (todo) {
       return (
-        <Todo>
+        <Todo key={todo.todoId}>
           {todo.todoText}
         </Todo>
       );
