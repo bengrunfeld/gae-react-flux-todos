@@ -2,3 +2,10 @@
 node_modules
 dist
 server.py
+*.pyc
+.*swp
+.build
+.ropeproject/
+client_secrets.json
+lib
+env1
