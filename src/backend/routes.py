@@ -14,14 +14,15 @@ from handlers import GetTodo
 from handlers import CreateTodo
 from handlers import UpdateTodo
 from handlers import DeleteTodo
+from main import RenderApp
 
 
 app = webapp2.WSGIApplication([
     routes.PathPrefixRoute('/todos', [
         # List all todos
         webapp2.Route('/',
-                      handler=GetAllTodos,
-                      name='get-all-todos',
+                      handler=RenderApp,
+                      name='render-app',
                       methods=['GET']),
         # List one todo
 #        webapp2.Route('/',

@@ -70,6 +70,15 @@ class HandleOptions(webapp2.RequestHandler):
         self.response.headers = initialize_headers(self.response.headers, 'DELETE')
 
 
+class DisplayHomePage(webapp2.RequestHandler):
+    def get(self):
+        """GET /: Display home page"""
+
+        self.response.headers = initialize_headers(self.response.headers, 'GET')
+
+
+
+
 class GetAllTodos(webapp2.RequestHandler):
     def get(self):
         """GET /: Retrieve all todos"""
