@@ -2,19 +2,22 @@
 var React = require('react');
 //var AppActions = require('../actions/AppActions');
 //var AppStore = require('../stores/AppStores');
-var TodoForm = require('./todo-form.js');
-var TodoList = require('./todo-list.js');
+var TodoForm = require('./todo-form');
+var TodoList = require('./todo-list');
 
-var App = React.createClass({
-  render:function(){
+var TodoBox = React.createClass({
+  getInitialState: function(){
+    return {data: []};
+  },
+  render: function(){
     return (
       <div className="todo-container">
         <h4>GAE React Flux Todos</h4>
         <TodoForm />
-        <TodoList />
+        <TodoList data={this.props.data} />
       </div>
     )
   }
 });
 
-module.exports = App;
+module.exports = TodoBox;

@@ -1,9 +1,14 @@
 /** @jsx React.DOM */
 var React = require('react');
 
-var App = React.createFactory(require('./components/app.js'));
+var TodoBox = React.createFactory(require('./components/todo-box'));
+
+var data = [
+  {todoId: "567", todoText: "Hello, how are you?"},
+  {todoId: "890", todoText: "Fine thank you."}
+];
 
 React.render(
-  <App />,
+  <TodoBox data={data} />,
   document.getElementById('main')
 );

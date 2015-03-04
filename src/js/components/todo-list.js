@@ -1,12 +1,22 @@
 /** @jsx React.DOM */
 var React = require('react');
+var Todo = require('./todo');
 
-var TodoList = React.createClass({
+var App = React.createClass({
   render:function(){
+    var todoNodes = this.props.data.map(function (todo) {
+      return (
+        <Todo>
+          {todo.todoText}
+        </Todo>
+      );
+    });
     return (
-      <div className="todoList"></div>
+      <div className="todoList">
+        {todoNodes}
+      </div>
     )
   }
 });
 
-module.exports = TodoList;
+module.exports = App;
