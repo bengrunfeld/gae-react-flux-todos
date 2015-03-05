@@ -21,8 +21,8 @@ app = webapp2.WSGIApplication([
     routes.PathPrefixRoute('/todos', [
         # List all todos
         webapp2.Route('/',
-                      handler=RenderApp,
-                      name='render-app',
+                      handler=GetAllTodos,
+                      name='get-all-todos',
                       methods=['GET']),
         # List one todo
 #        webapp2.Route('/',
@@ -40,7 +40,7 @@ app = webapp2.WSGIApplication([
                       name='update-todo',
                       methods=['PUT']),
         # Delete an existing todo
-        webapp2.Route('/',
+        webapp2.Route('/<todo_id>',
                       handler=DeleteTodo,
                       name='delete-todo',
                       methods=['DELETE']),

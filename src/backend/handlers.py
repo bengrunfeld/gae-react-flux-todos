@@ -89,6 +89,8 @@ class GetAllTodos(webapp2.RequestHandler):
         all_todos = serialize_data(qry)
 
         self.response.write(json.dumps(all_todos, sort_keys=True, indent=4))
+        #context = all_todos
+        #self.render('index', context)
 
 
 class GetTodo(webapp2.RequestHandler):
@@ -109,7 +111,8 @@ class CreateTodo(webapp2.RequestHandler):
 
         self.response.headers = initialize_headers(self.response.headers, 'POST')
 
-        new_title = json.loads(self.request.body).get('title')
+        # new_title = json.loads(self.request.body).get('title')
+        new_title = self.request.get('title')
 
         new_todo = TodoModel(title = new_title)
         key = new_todo.put()
@@ -133,14 +136,12 @@ class UpdateTodo(webapp2.RequestHandler):
 
 
 class DeleteTodo(webapp2.RequestHandler):
-    def delete(self):
+    def delete(self, todo_id):
         """DELETE /<todo_id>: Delete a single todo"""
 
         self.response.headers = initialize_headers(self.response.headers, 'DELETE')
 
-        print '---------------->>>'
-        print self.request.get('model_id')
-        #qry = ndb.Key('TodoModel', int(todo_id))
-        #qry.delete()
+        qry = ndb.Key('TodoModel', int(todo_id))
+        qry.delete()
 
         self.response.write('{} was deleted'.format('record'))
