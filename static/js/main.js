@@ -19033,8 +19033,7 @@ var TodoList = React.createClass({displayName: 'TodoList',
   render:function(){
     if (jQuery.isEmptyObject(this.props.data)) {
       return (
-        React.DOM.div({className: "todoList"}
-        )
+        React.DOM.div({className: "todoList"})
       )
     }
     var todoNodes = this.props.data.map(function (todo) {
@@ -19061,7 +19060,7 @@ var React = require('react');
 var Todo = React.createClass({displayName: 'Todo',
   render:function(){
     return (
-      React.DOM.p(null, this.props.children)
+      React.DOM.div(null, React.DOM.p(null, this.props.children))
     )
   }
 });

@@ -6,8 +6,7 @@ var TodoList = React.createClass({
   render:function(){
     if (jQuery.isEmptyObject(this.props.data)) {
       return (
-        <div className="todoList">
-        </div>
+        <div className="todoList"></div>
       )
     }
     var todoNodes = this.props.data.map(function (todo) {
