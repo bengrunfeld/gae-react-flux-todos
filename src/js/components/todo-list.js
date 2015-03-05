@@ -2,8 +2,14 @@
 var React = require('react');
 var Todo = require('./todo');
 
-var App = React.createClass({
+var TodoList = React.createClass({
   render:function(){
+    if (jQuery.isEmptyObject(this.props.data)) {
+      return (
+        <div className="todoList">
+        </div>
+      )
+    }
     var todoNodes = this.props.data.map(function (todo) {
       return (
         <Todo key={todo.todoId}>
@@ -19,4 +25,4 @@ var App = React.createClass({
   }
 });
 
-module.exports = App;
+module.exports = TodoList;
