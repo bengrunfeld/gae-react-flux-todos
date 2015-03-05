@@ -18,6 +18,10 @@ from main import RenderApp
 
 
 app = webapp2.WSGIApplication([
+    webapp2.Route('/',
+                  handler=RenderApp,
+                  name='render-app',
+                  methods=['GET']),
     routes.PathPrefixRoute('/todos', [
         # List all todos
         webapp2.Route('/',

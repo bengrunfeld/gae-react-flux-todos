@@ -51,7 +51,7 @@ def serialize_data(qry):
 def initialize_headers(headers, http_verb):
     """Set up the headers for HTTP requests"""
 
-    headers['Access-Control-Allow-Origin'] = '*'
+    headers['Access-Control-Allow-Origin'] = 'google.com'
     headers['Access-Control-Allow-Methods'] = http_verb
     headers['Access-Control-Request-Method'] = http_verb
     headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept'
@@ -88,9 +88,7 @@ class GetAllTodos(webapp2.RequestHandler):
         qry = TodoModel.query().fetch()
         all_todos = serialize_data(qry)
 
-        self.response.write(json.dumps(all_todos, sort_keys=True, indent=4))
-        #context = all_todos
-        #self.render('index', context)
+        self.response.out.write(json.dumps(all_todos, sort_keys=True, indent=4))
 
 
 class GetTodo(webapp2.RequestHandler):

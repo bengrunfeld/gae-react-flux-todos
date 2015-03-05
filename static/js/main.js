@@ -19012,9 +19012,13 @@ module.exports = TodoBox;
 var React = require('react');
 
 var TodoForm = React.createClass({displayName: 'TodoForm',
+  handleSubmit: function(e) {
+    alert('hi');
+    e.preventDefault();
+  },
   render:function(){
     return (
-      React.DOM.form({className: "todosForm"}, 
+      React.DOM.form({className: "todosForm", onSubmit: this.handleSubmit}, 
         React.DOM.input({type: "text", placeholder: "Write a todo here...", ref: "todoText"}), 
         React.DOM.input({type: "submit", value: "Post"})
       )
@@ -19038,8 +19042,8 @@ var TodoList = React.createClass({displayName: 'TodoList',
     }
     var todoNodes = this.props.data.map(function (todo) {
       return (
-        Todo({key: todo.todoId}, 
-          todo.todoText
+        Todo({key: todo.id}, 
+          todo.title
         )
       );
     });
@@ -19072,7 +19076,7 @@ module.exports = Todo;
 module.exports = {
   LOAD_COMPONENT_DATA: 'LOAD_COMPONENT_DATA',
   REMOVE_COMPONENT_DATA: 'REMOVE_COMPONENT_DATA',
-  REQUEST_ALL_TODOS_URL: 'http://localhost:8080/static/todos.json',
+  REQUEST_ALL_TODOS_URL: 'http://localhost:8080/todos/',
   CHANGE_EVENT: 'change'
 };
 
