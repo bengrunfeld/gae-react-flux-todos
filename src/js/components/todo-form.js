@@ -3,7 +3,6 @@ var React = require('react');
 
 var TodoForm = React.createClass({
   handleSubmit: function(e) {
-    alert('hi');
     e.preventDefault();
   },
   render:function(){
