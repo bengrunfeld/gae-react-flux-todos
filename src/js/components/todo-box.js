@@ -25,7 +25,7 @@ var TodoBox = React.createClass({
   },
   handleTodoSubmit: function(todo) {
     // Fires action that sends Todo to server
-    AppActions.submitTodo(todo);
+    AppActions.submitTodoForm(todo);
   },
   render: function(){
     return (

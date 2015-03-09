@@ -49,9 +49,6 @@ AppDispatcher.register(function(payload){
   AppStore.getAllTodos();
 
   return true;
-
-  // TODO: if the action is 'getAll', query the DB via the API
-  // TODO: then load the payload we recieve into _todoItems.
 });
 
 module.exports = AppStore;
