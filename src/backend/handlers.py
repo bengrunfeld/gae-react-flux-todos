@@ -51,7 +51,7 @@ def serialize_data(qry):
 def initialize_headers(headers, http_verb):
     """Set up the headers for HTTP requests"""
 
-    headers['Access-Control-Allow-Origin'] = 'google.com'
+    headers['Access-Control-Allow-Origin'] = 'null'
     headers['Access-Control-Allow-Methods'] = http_verb
     headers['Access-Control-Request-Method'] = http_verb
     headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept'
