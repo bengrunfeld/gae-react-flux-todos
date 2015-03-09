@@ -14,16 +14,20 @@ var TodoBox = React.createClass({
     return getTodoItems();
   },
   componentWillMount: function(){
-    // Listens for any changes, then updates the component
     AppStore.addChangeListener(this._onChange);
 
     // Fires action that triggers the initial load
-    AppActions.loadComponentData('Hi Ben');
+    AppActions.loadComponentData();
   },
   _onChange: function() {
     this.setState(getTodoItems());
   },
+  _onReloadResults: function() {
+    AppActions.loadComponentData();
+  },
   handleTodoSubmit: function(todo) {
+    AppStore.addReloadListener(this._onReloadResults);
+
     // Fires action that sends Todo to server
     AppActions.submitTodoForm(todo);
   },
@@ -31,7 +35,7 @@ var TodoBox = React.createClass({
     return (
       <div className="todo-container">
         <h4>GAE React Flux Todos</h4>
-        <TodoForm onCommentSubmit={this.handleTodoSubmit} />
+        <TodoForm onTodoSubmit={this.handleTodoSubmit} />
         <TodoList data={this.state.data} />
       </div>
     )

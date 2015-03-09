@@ -3,19 +3,18 @@ var React = require('react');
 
 var TodoForm = React.createClass({
   handleSubmit: function(e) {
-    // Stop default submit behvaior
     e.preventDefault();
 
     // Grab value from form
     var todoText = this.refs.todoText.getDOMNode().value.trim();
 
     // If empty, bail
-    if (!text) {
+    if (!todoText) {
       return
     }
 
     // Send to server
-    this.props.onCommentSubmit({todoText: todoText});
+    this.props.onTodoSubmit({todoText: todoText});
 
     // Reset the form
     this.refs.todoText.getDOMNode().value = '';

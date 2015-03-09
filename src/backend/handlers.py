@@ -110,12 +110,13 @@ class CreateTodo(webapp2.RequestHandler):
         self.response.headers = initialize_headers(self.response.headers, 'POST')
 
         # new_title = json.loads(self.request.body).get('title')
-        new_title = self.request.get('title')
-
-        new_todo = TodoModel(title = new_title)
+        new_todo = self.request.get('todoText')
+        new_todo = TodoModel(title = new_todo)
         key = new_todo.put()
 
-        self.response.write('Successfully added new todo')
+        response_text = json.dumps(dict([('response', 'Successfully added to database')]))
+
+        self.response.write(response_text)
 
 
 class UpdateTodo(webapp2.RequestHandler):

@@ -3,16 +3,16 @@ var AppDispatcher = require('../dispatcher/app-dispatcher');
 var AppConstants = require('../constants/app-constants');
 
 var AppActions = {
-  loadComponentData: function(data){
+  loadComponentData: function(){
     AppDispatcher.handleViewAction({
       actionType:AppConstants.LOAD_COMPONENT_DATA,
-      data: data
+      data: null
     })
   },
   submitTodoForm: function(todo){
     AppDispatcher.handleViewAction({
-      actionType.AppConstants.SUBMIT_TODO_FORM,
-      data: data
+      actionType:AppConstants.SUBMIT_TODO_FORM,
+      data: todo
     })
   }
 }
