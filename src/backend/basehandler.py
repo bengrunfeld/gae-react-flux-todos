@@ -12,7 +12,7 @@ import webapp2
 from webapp2_extras import sessions
 
 
-TEMPLATE_DIR = 'dist'
+TEMPLATE_DIR = '/templates'
 TEMPLATE_SUFFIX = '.html'
 
 GITHUB_API_URL = 'https://api.github.com'

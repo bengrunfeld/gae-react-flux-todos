@@ -5,7 +5,7 @@ var AppActions = require('../actions/app-actions');
 var Todo = React.createClass({
   onDeleteClick: function(todo){
     // TODO: Should this go in parent?
-    AppActions.deleteTodo(todo.target.className);
+    AppActions.deleteTodo({id: todo.target.className});
   },
   render:function(){
     return (

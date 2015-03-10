@@ -51,7 +51,7 @@ def serialize_data(qry):
 def initialize_headers(headers, http_verb):
     """Set up the headers for HTTP requests"""
 
-    headers['Access-Control-Allow-Origin'] = 'null'
+    headers['Access-Control-Allow-Origin'] = '*'
     headers['Access-Control-Allow-Methods'] = http_verb
     headers['Access-Control-Request-Method'] = http_verb
     headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept'
@@ -74,7 +74,7 @@ class DisplayHomePage(webapp2.RequestHandler):
     def get(self):
         """GET /: Display home page"""
 
-        self.response.headers = initialize_headers(self.response.headers, 'GET')
+        #self.response.headers = initialize_headers(self.response.headers, 'GET')
 
 
 
@@ -136,11 +136,17 @@ class UpdateTodo(webapp2.RequestHandler):
 
 class DeleteTodo(webapp2.RequestHandler):
     def delete(self, todo_id):
-        """DELETE /<todo_id>: Delete a single todo"""
+        """sDELETE /<todo_id>: Delete a single todo"""
 
         self.response.headers = initialize_headers(self.response.headers, 'DELETE')
 
-        qry = ndb.Key('TodoModel', int(todo_id))
-        qry.delete()
+        print '-------------------->>>>>>'
+        print todo_id
+        #todo_id = self.response.get('id')
 
-        self.response.write('{} was deleted'.format('record'))
+        #qry = ndb.Key('TodoModel', int(todo_id))
+        #qry.delete()
+        message = json.dumps('That worked!')
+
+        #self.response.write('{} was deleted'.format('record'))
+        self.response.write(message)

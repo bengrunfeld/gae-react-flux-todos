@@ -11,6 +11,8 @@ libraries:
   version: latest
 
 handlers:
+- url: /dist
+  static_dir: dist
 - url: /static
   static_dir: static
 - url: /.*

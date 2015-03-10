@@ -68,6 +68,29 @@ var AppStore = assign({}, EventEmitter.prototype, {
         console.error(AppConstants.REQUEST_ALL_TODOS_URL, status, err.toString());
       }.bind(this)
     });
+  },
+  deleteTodo: function(todo) {
+    this.deleteTodoOnServer(todo).done(function(result){
+      console.log('Woot!' + result);
+      return;
+    }).fail(function(result){
+      return 'error in deleteTodoOnServer Ajax call: ' + result;
+    });
+  },
+  deleteTodoOnServer: function(todo) {
+    return $.ajax({
+      url: AppConstants.DELETE_TODO_URL + todo.id,
+      dataType: 'json',
+      type: 'DELETE',
+      //data: todo,
+      success: function(data) {
+        // return data;
+      }.bind(this),
+      error: function(xhr, status, err) {
+        // console.error(AppConstants.CREATE_NEW_TODO_URL, status, err.toString())
+        console.log('Stink!');
+      }.bind(this)
+    });
   }
 });
 
@@ -80,6 +103,9 @@ AppDispatcher.register(function(payload){
       break;
     case 'SUBMIT_TODO_FORM':
       AppStore.createTodo(payload.action.data);
+      break;
+    case 'DELETE_TODO':
+      AppStore.deleteTodo(payload.action.data);
       break;
   }
 

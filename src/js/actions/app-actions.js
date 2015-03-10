@@ -17,7 +17,7 @@ var AppActions = {
   },
   deleteTodo: function(todo){
     AppDispatcher.handleViewAction({
-      actionType:AppConstants.SUBMIT_TODO_FORM,
+      actionType:AppConstants.DELETE_TODO,
       data: todo
     })
   }
