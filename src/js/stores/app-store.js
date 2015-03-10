@@ -38,7 +38,6 @@ var AppStore = assign({}, EventEmitter.prototype, {
   },
   createTodo: function(todo) {
     this.createTodoOnServer(todo).done(function(result){
-      AppStore.emitChange(AppConstants.RELOAD_RESULTS);
       return;
     }).fail(function(){
       return 'error in createTodoOnServer Ajax call: ' + result;
