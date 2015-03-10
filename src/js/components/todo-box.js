@@ -29,6 +29,7 @@ var TodoBox = React.createClass({
     // Optimistically update the UI
     var all_todos = getTodoItems();
     all_todos.data.push(todo);
+    console.log(all_todos);
     this.setState(all_todos);
   },
   handleTodoSubmit: function(todo) {
