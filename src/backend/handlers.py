@@ -51,6 +51,7 @@ def serialize_data(qry):
 def initialize_headers(headers, http_verb):
     """Set up the headers for HTTP requests"""
 
+    # TODO: Restrict Allow-Origin to trusted domains ONLY!
     headers['Access-Control-Allow-Origin'] = '*'
     headers['Access-Control-Allow-Methods'] = http_verb
     headers['Access-Control-Request-Method'] = http_verb
