@@ -23,12 +23,6 @@ var TodoBox = React.createClass({
     this.setState(getTodoItems());
   },
   _onReloadResults: function() {
-    var start = new Date().getTime();
-    for (var i = 0; i < 1e7; i++) {
-      if ((new Date().getTime() - start) > 8000){
-        break;
-      }
-    }
     AppActions.loadComponentData();
   },
   optimisticallyUpdate: function(todo){

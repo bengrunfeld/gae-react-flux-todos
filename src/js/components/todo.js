@@ -4,7 +4,7 @@ var React = require('react');
 var Todo = React.createClass({
   render:function(){
     return (
-      <div><p>{this.props.children}</p></div>
+      <div><p>{this.props.children} - <a>delete</a></p></div>
     )
   }
 });
