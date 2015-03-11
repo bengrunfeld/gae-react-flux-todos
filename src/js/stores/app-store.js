@@ -69,12 +69,24 @@ var AppStore = assign({}, EventEmitter.prototype, {
       }.bind(this)
     });
   },
+  removeFromTodoItems: function(todo){
+    // Remove deleted todo from _todoItems
+    newTodoItems = $.grep(_todoItems, function(e){
+      return e.id == todo.id;
+    }, true);
+
+    _todoItems = newTodoItems;
+  },
   deleteTodo: function(todo) {
     this.deleteTodoOnServer(todo).done(function(result){
-      console.log('Woot!' + result);
+      AppStore.removeFromTodoItems(todo);
+
+      // Fire a render to remove todo from the DOM
+      AppStore.emitChange(AppConstants.CHANGE_EVENT);
       return;
     }).fail(function(result){
-      return 'error in deleteTodoOnServer Ajax call: ' + result;
+      console.log('fail');
+      // return 'error in deleteTodoOnServer Ajax call: ' + result;
     });
   },
   deleteTodoOnServer: function(todo) {
@@ -88,7 +100,6 @@ var AppStore = assign({}, EventEmitter.prototype, {
       }.bind(this),
       error: function(xhr, status, err) {
         // console.error(AppConstants.CREATE_NEW_TODO_URL, status, err.toString())
-        console.log('Stink!');
       }.bind(this)
     });
   }

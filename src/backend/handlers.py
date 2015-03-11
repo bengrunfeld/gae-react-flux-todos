@@ -149,5 +149,7 @@ class DeleteTodo(webapp2.RequestHandler):
         qry = ndb.Key('TodoModel', int(todo_id))
         qry.delete()
 
-        print '{} was successfully deleted'.format(qry)
-        self.response.write('{} was successfully deleted'.format(qry))
+        message = json.dumps('{} was successfully deleted'.format(todo_id))
+
+        print message
+        self.response.write(message)
