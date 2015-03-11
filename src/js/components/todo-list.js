@@ -19,9 +19,9 @@ var TodoList = React.createClass({
       );
     });
     return (
-      <div className="todoList">
+      <form className="todoList">
         {todoNodes}
-      </div>
+      </form>
     )
   }
 });
