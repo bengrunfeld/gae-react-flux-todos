@@ -32,6 +32,10 @@ var TodoBox = React.createClass({
     console.log(all_todos);
     this.setState(all_todos);
   },
+  afterOptimisticUpdate: function(todo){
+    // TODO: Once the request comes back from the server,
+    // TODO: update the todo with the correct ID
+  },
   handleTodoSubmit: function(todo) {
     AppStore.addReloadListener(this._onReloadResults);
 

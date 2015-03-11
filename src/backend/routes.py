@@ -9,6 +9,7 @@ from webapp2_extras import routes
 
 from config import config
 from handlers import HandleOptions
+from handlers import DisplayHomePage
 from handlers import GetAllTodos
 from handlers import GetTodo
 from handlers import CreateTodo
@@ -16,10 +17,9 @@ from handlers import UpdateTodo
 from handlers import DeleteTodo
 from main import RenderApp
 
-
 app = webapp2.WSGIApplication([
     webapp2.Route('/',
-                  handler=RenderApp,
+                  handler=DisplayHomePage,
                   name='render-app',
                   methods=['GET']),
     routes.PathPrefixRoute('/todos', [

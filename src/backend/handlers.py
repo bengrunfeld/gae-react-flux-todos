@@ -9,6 +9,7 @@ import datetime
 
 from google.appengine.ext import ndb
 
+from basehandler import BaseHandler
 from models import TodoModel
 
 
@@ -56,7 +57,7 @@ def initialize_headers(headers, http_verb):
     headers['Access-Control-Allow-Methods'] = http_verb
     headers['Access-Control-Request-Method'] = http_verb
     headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept'
-    headers['Content-Type'] = 'text/plain'
+    #headers['Content-Type'] = 'text/plain'
 
     return headers
 
@@ -71,13 +72,17 @@ class HandleOptions(webapp2.RequestHandler):
         self.response.headers = initialize_headers(self.response.headers, 'DELETE')
 
 
-class DisplayHomePage(webapp2.RequestHandler):
+class DisplayHomePage(BaseHandler):
     def get(self):
         """GET /: Display home page"""
 
-        #self.response.headers = initialize_headers(self.response.headers, 'GET')
+        self.response.headers = initialize_headers(self.response.headers, 'GET')
 
+        # Put data into context
+        context = {"name": "ben"}
 
+        # Render the app
+        self.render('index', context)
 
 
 class GetAllTodos(webapp2.RequestHandler):
