@@ -14,7 +14,13 @@ gulp.task('copy', function() {
       .pipe(gulp.dest('src/backend/templates'));
 });
 
-gulp.task('default',['browserify', 'copy']);
+gulp.task('copy', function() {
+    gulp.src('src/css/main.css')
+      .pipe(gulp.dest('dist/css'));
+});
+
+
+gulp.task('default',['browserify', 'copy', 'copy']);
 
 gulp.task('watch', function() {
     gulp.watch('src/**/*.*', ['default']);

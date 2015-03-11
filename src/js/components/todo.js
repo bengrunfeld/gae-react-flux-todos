@@ -10,7 +10,7 @@ var AppActions = require('../actions/app-actions');
       },
       render:function(){
         return (
-          <div><p>{this.props.children} - <a className={this.props.id} onClick={this.onDeleteClick}>delete</a></p></div>
+          <div className="todoItem"><input type="text" value={this.props.children} ref="todoItem"/> - <a className={this.props.id} onClick={this.onDeleteClick}>delete</a></div>
         )
       }
     });
