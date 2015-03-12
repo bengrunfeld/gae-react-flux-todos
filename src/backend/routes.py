@@ -39,7 +39,7 @@ app = webapp2.WSGIApplication([
                       name='create-todo',
                       methods=['POST']),
         # Update an existing todo
-        webapp2.Route('/<model_id>',
+        webapp2.Route('/<todo_id>',
                       handler=UpdateTodo,
                       name='update-todo',
                       methods=['PUT']),

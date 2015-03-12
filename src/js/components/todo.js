@@ -10,11 +10,12 @@ var AppActions = require('../actions/app-actions');
       },
       checkInput: function(todo){
         // Check if what was entered is a number
-        console.log(todo.target.value);
+        //console.log(todo.target.value);
       },
       updateTodo: function(todo){
-        var newTodo = {id: todo.target.className, todoText: $('.' + todo.target.className).val()}
-        AppActions.updateTodo()
+        var targetClass = '.' + todo.target.className;
+        var newTodo = {id: todo.target.className, title: $(targetClass).val()};
+        AppActions.updateTodo(newTodo);
 
         // NEXT: Send Todo id to backend to be deleted, then re-render the UI
       },

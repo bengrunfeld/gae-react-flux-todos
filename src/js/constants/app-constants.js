@@ -4,9 +4,11 @@ module.exports = {
   REMOVE_COMPONENT_DATA: 'REMOVE_COMPONENT_DATA',
   SUBMIT_TODO_FORM: 'SUBMIT_TODO_FORM',
   DELETE_TODO: 'DELETE_TODO',
+  UPDATE_TODO: 'UPDATE_TODO',
   CREATE_NEW_TODO_URL: 'http://localhost:8080/todos/',
   REQUEST_ALL_TODOS_URL: 'http://localhost:8080/todos/',
   DELETE_TODO_URL: 'http://localhost:8080/todos/',
+  UPDATE_TODO_URL: 'http://localhost:8080/todos/',
   RELOAD_RESULTS: 'RELOAD_RESULTS',
   CHANGE_EVENT: 'CHANGE'
 };

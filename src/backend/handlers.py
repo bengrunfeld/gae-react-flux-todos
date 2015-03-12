@@ -120,9 +120,8 @@ class CreateTodo(webapp2.RequestHandler):
         new_todo = TodoModel(title = new_todo)
         key = new_todo.put()
 
-        response_text = json.dumps(dict([('response', 'Successfully added to database')]))
-
-        self.response.write(response_text)
+        message = json.dumps('New Todo was successfully created')
+        self.response.write(message)
 
 
 class UpdateTodo(webapp2.RequestHandler):
@@ -137,7 +136,8 @@ class UpdateTodo(webapp2.RequestHandler):
         target.title = self.request.get('title')
         target.put()
 
-        self.response.write('Record was updated')
+        message = json.dumps('{} was successfully updated'.format(todo_id))
+        self.response.write(message)
 
 
 class DeleteTodo(webapp2.RequestHandler):
@@ -150,6 +150,4 @@ class DeleteTodo(webapp2.RequestHandler):
         qry.delete()
 
         message = json.dumps('{} was successfully deleted'.format(todo_id))
-
-        print message
         self.response.write(message)

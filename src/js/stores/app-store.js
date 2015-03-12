@@ -104,8 +104,30 @@ var AppStore = assign({}, EventEmitter.prototype, {
     });
   },
   updateTodo: function(todo) {
-    console.log('Store');
-    console.log(todo);
+    this.updateTodoOnServer(todo).done(function(result){      // Fire a render to remove todo from the DOM
+      // Update _todoItems with new list of todos
+      console.log('update complete!');
+      AppStore.emitChange(AppConstants.CHANGE_EVENT);
+      return;
+    }).fail(function(result){
+      console.log('fail');
+      // return 'error in deleteTodoOnServer Ajax call: ' + result;
+    });
+
+  },
+  updateTodoOnServer: function(todo){
+    return $.ajax({
+      url: AppConstants.UPDATE_TODO_URL + todo.id,
+      dataType: 'json',
+      type: 'PUT',
+      data: todo,
+      success: function(data) {
+        // return data;
+      }.bind(this),
+      error: function(xhr, status, err) {
+        // console.error(AppConstants.CREATE_NEW_TODO_URL, status, err.toString())
+      }.bind(this)
+    });
   }
 });
 
