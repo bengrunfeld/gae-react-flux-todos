@@ -28,9 +28,7 @@ var AppStore = assign({}, EventEmitter.prototype, {
   },
   addToTodoItems: function(todo){
     // Remove deleted todo from _todoItems
-    console.log('------------->>>>> addToTodoItems')
-    console.log(_todoItems);
-    console.log(todo);
+    // Currently being done somehow by TodoBox
     _todoItems.push(todo);
   },
   removeFromTodoItems: function(todo){

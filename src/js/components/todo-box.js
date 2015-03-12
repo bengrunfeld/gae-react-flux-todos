@@ -26,10 +26,10 @@ var TodoBox = React.createClass({
     AppActions.loadComponentData();
   },
   optimisticallyUpdate: function(todo){
-    // Optimistically update the UI
-    var all_todos = getTodoItems();
-    all_todos.data.push(todo);
-    this.setState(all_todos);
+    // TODO: V2 feature? Optimistically update the UI
+    //var all_todos = getTodoItems();
+    //all_todos.data.push(todo);
+    //this.setState(all_todos);
   },
   handleTodoSubmit: function(todo) {
     AppStore.addReloadListener(this._onReloadResults);
