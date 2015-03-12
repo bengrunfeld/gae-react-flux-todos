@@ -8,11 +8,11 @@ var assign = require('object-assign');
 var _todoItems = {};
 
 var AppStore = assign({}, EventEmitter.prototype, {
-  emitChange: function(change) {
-    this.emit(change);
-  },
   getTodos: function() {
     return _todoItems;
+  },
+  emitChange: function(change) {
+    this.emit(change);
   },
   addChangeListener: function(callback) {
     this.on(AppConstants.CHANGE_EVENT, callback);
@@ -27,8 +27,7 @@ var AppStore = assign({}, EventEmitter.prototype, {
     this.removeListener(AppConstants.RELOAD_RESULTS, callback);
   },
   addToTodoItems: function(todo){
-    // Remove deleted todo from _todoItems
-    // Currently being done somehow by TodoBox
+    // Add new Todo to _todoItems
     _todoItems.push(todo);
   },
   removeFromTodoItems: function(todo){
@@ -45,7 +44,7 @@ var AppStore = assign({}, EventEmitter.prototype, {
       _todoItems = result;
       AppStore.emitChange(AppConstants.CHANGE_EVENT);
       return;
-    }).fail(function(){
+    }).fail(function(result){
       return 'error in requestAllTodos Ajax call: ' + result;
     });
   },
@@ -56,9 +55,31 @@ var AppStore = assign({}, EventEmitter.prototype, {
       AppStore.addToTodoItems(todo);
       AppStore.emitChange(AppConstants.CHANGE_EVENT);
       return;
-    }).fail(function(){
+    }).fail(function(result){
       return 'error in createTodoOnServer Ajax call: ' + result;
     });
+  },
+  deleteTodo: function(todo) {
+    this.deleteTodoOnServer(todo).done(function(result){
+      AppStore.removeFromTodoItems(todo);
+
+      // Fire a render to remove todo from the DOM
+      AppStore.emitChange(AppConstants.CHANGE_EVENT);
+      return;
+    }).fail(function(result){
+      return 'error in deleteTodoOnServer Ajax call: ' + result;
+    });
+  },
+  updateTodo: function(todo) {
+    this.updateTodoOnServer(todo).done(function(result){
+      // Update _todoItems with new list of todos
+      // Should perform a re-render here, but currently not necessary
+      AppStore.emitChange(AppConstants.CHANGE_EVENT);
+      return;
+    }).fail(function(result){
+      return 'error in deleteTodoOnServer Ajax call: ' + result;
+    });
+
   },
   createTodoOnServer: function(todo){
     return $.ajax({
@@ -86,18 +107,6 @@ var AppStore = assign({}, EventEmitter.prototype, {
       }.bind(this)
     });
   },
-  deleteTodo: function(todo) {
-    this.deleteTodoOnServer(todo).done(function(result){
-      AppStore.removeFromTodoItems(todo);
-
-      // Fire a render to remove todo from the DOM
-      AppStore.emitChange(AppConstants.CHANGE_EVENT);
-      return;
-    }).fail(function(result){
-      console.log('fail');
-      // return 'error in deleteTodoOnServer Ajax call: ' + result;
-    });
-  },
   deleteTodoOnServer: function(todo) {
     return $.ajax({
       url: AppConstants.DELETE_TODO_URL + todo.id,
@@ -111,18 +120,6 @@ var AppStore = assign({}, EventEmitter.prototype, {
         // console.error(AppConstants.CREATE_NEW_TODO_URL, status, err.toString())
       }.bind(this)
     });
-  },
-  updateTodo: function(todo) {
-    this.updateTodoOnServer(todo).done(function(result){      // Fire a render to remove todo from the DOM
-      // Update _todoItems with new list of todos
-      console.log('update complete!');
-      AppStore.emitChange(AppConstants.CHANGE_EVENT);
-      return;
-    }).fail(function(result){
-      console.log('fail');
-      // return 'error in deleteTodoOnServer Ajax call: ' + result;
-    });
-
   },
   updateTodoOnServer: function(todo){
     return $.ajax({
