@@ -3,6 +3,11 @@ var React = require('react');
 var Todo = require('./todo');
 
 var TodoList = React.createClass({
+  handleUpdateSubmit: function(e) {
+    e.preventDefault();
+
+    console.log('her');
+  },
   render:function(){
     // Avoid error from rendering if props is empty
     // TODO: Should probably take care of this in the parent component
@@ -19,7 +24,7 @@ var TodoList = React.createClass({
       );
     });
     return (
-      <form className="todoList">
+      <form className="todoList" onSubmit={this.handleUpdateSubmit}>
         {todoNodes}
       </form>
     )

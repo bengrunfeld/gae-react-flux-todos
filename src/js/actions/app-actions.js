@@ -20,6 +20,12 @@ var AppActions = {
       actionType:AppConstants.DELETE_TODO,
       data: todo
     })
+  },
+  updateTodo: function(todo){
+    AppDispatcher.handleViewAction({
+      actionType:AppConstants.UPDATE_TODO,
+      data: todo
+    })
   }
 }
 

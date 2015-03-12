@@ -102,6 +102,10 @@ var AppStore = assign({}, EventEmitter.prototype, {
         // console.error(AppConstants.CREATE_NEW_TODO_URL, status, err.toString())
       }.bind(this)
     });
+  },
+  updateTodo: function(todo) {
+    console.log('Store');
+    console.log(todo);
   }
 });
 
@@ -118,6 +122,8 @@ AppDispatcher.register(function(payload){
     case 'DELETE_TODO':
       AppStore.deleteTodo(payload.action.data);
       break;
+    case 'UPDATE_TODO':
+      AppStore.updateTodo(payload.action.data);
   }
 
   return true;
