@@ -26,6 +26,21 @@ var AppStore = assign({}, EventEmitter.prototype, {
   removeReloadListener: function(callback) {
     this.removeListener(AppConstants.RELOAD_RESULTS, callback);
   },
+  addToTodoItems: function(todo){
+    // Remove deleted todo from _todoItems
+    console.log('------------->>>>> addToTodoItems')
+    console.log(_todoItems);
+    console.log(todo);
+    _todoItems.push(todo);
+  },
+  removeFromTodoItems: function(todo){
+    // Remove deleted todo from _todoItems
+    newTodoItems = $.grep(_todoItems, function(e){
+      return e.id == todo.id;
+    }, true);
+
+    _todoItems = newTodoItems;
+  },
   getAllTodos: function() {
     this.requestAllTodos().done(function(result){
       // When the result has come back after an async request, update the UI
@@ -38,6 +53,10 @@ var AppStore = assign({}, EventEmitter.prototype, {
   },
   createTodo: function(todo) {
     this.createTodoOnServer(todo).done(function(result){
+      // Add new todo to _todoItems, then call re-render
+      todo.id = result.id;
+      AppStore.addToTodoItems(todo);
+      AppStore.emitChange(AppConstants.CHANGE_EVENT);
       return;
     }).fail(function(){
       return 'error in createTodoOnServer Ajax call: ' + result;
@@ -68,14 +87,6 @@ var AppStore = assign({}, EventEmitter.prototype, {
         console.error(AppConstants.REQUEST_ALL_TODOS_URL, status, err.toString());
       }.bind(this)
     });
-  },
-  removeFromTodoItems: function(todo){
-    // Remove deleted todo from _todoItems
-    newTodoItems = $.grep(_todoItems, function(e){
-      return e.id == todo.id;
-    }, true);
-
-    _todoItems = newTodoItems;
   },
   deleteTodo: function(todo) {
     this.deleteTodoOnServer(todo).done(function(result){

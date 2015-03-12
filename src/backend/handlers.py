@@ -117,10 +117,10 @@ class CreateTodo(webapp2.RequestHandler):
 
         # new_title = json.loads(self.request.body).get('title')
         new_todo = self.request.get('todoText')
-        new_todo = TodoModel(title = new_todo)
+        new_todo = TodoModel(todoText = new_todo)
         key = new_todo.put()
 
-        message = json.dumps('New Todo was successfully created')
+        message = json.dumps({'log': 'New Todo was successfully created', 'id': key.id()})
         self.response.write(message)
 
 
@@ -133,7 +133,7 @@ class UpdateTodo(webapp2.RequestHandler):
         qry = ndb.Key('TodoModel', int(todo_id))
 
         target = qry.get()
-        target.title = self.request.get('title')
+        target.todoText = self.request.get('todoText')
         target.put()
 
         message = json.dumps('{} was successfully updated'.format(todo_id))

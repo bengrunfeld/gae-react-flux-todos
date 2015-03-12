@@ -38,7 +38,8 @@ var TodoBox = React.createClass({
 
     // Otherwise data doesn't sync up
     // TODO: Update database model field name
-    todo.title = todo.todoText;
+    // TODO: Database has been updated. Testing now
+    // todo.title = todo.todoText;
 
     this.optimisticallyUpdate(todo);
 

@@ -14,7 +14,7 @@ var AppActions = require('../actions/app-actions');
       },
       updateTodo: function(todo){
         var targetClass = '.' + todo.target.className;
-        var newTodo = {id: todo.target.className, title: $(targetClass).val()};
+        var newTodo = {id: todo.target.className, todoText: $(targetClass).val()};
         AppActions.updateTodo(newTodo);
 
         // NEXT: Send Todo id to backend to be deleted, then re-render the UI
