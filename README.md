@@ -16,4 +16,6 @@ To download and install, do the following:
 
 * Add the project
 
-* Navigate to `http://localhost/todos/`
+* Navigate to `http://localhost:<port_number>`
+
+For `port_number`, I set it up in Google App Engine to use `8080`.
