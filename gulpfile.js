@@ -9,19 +9,15 @@ gulp.task('browserify', function() {
       .pipe(gulp.dest('dist/js'));
 });
 
-gulp.task('copy', function() {
+gulp.task('copy-html', function() {
     gulp.src('src/index.html')
       .pipe(gulp.dest('src/backend/templates'));
 });
 
-gulp.task('copy', function() {
+gulp.task('copy-css', function() {
     gulp.src('src/css/main.css')
       .pipe(gulp.dest('dist/css'));
 });
 
 
-gulp.task('default',['browserify', 'copy', 'copy']);
-
-gulp.task('watch', function() {
-    gulp.watch('src/**/*.*', ['default']);
-});
+gulp.task('default',['browserify', 'copy-html', 'copy-css']);
