@@ -22,15 +22,8 @@ var TodoBox = React.createClass({
   _onChange: function() {
     this.setState(getTodoItems());
   },
-  _onReloadResults: function() {
-    AppActions.loadComponentData();
-  },
   handleTodoSubmit: function(todo) {
-    AppStore.addReloadListener(this._onReloadResults);
-
     AppActions.submitTodoForm(todo);
-
-    AppStore.removeChangeListener(this._onReloadResults);
   },
   render: function(){
     return (

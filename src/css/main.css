@@ -5,3 +5,7 @@
 .todoItem {
   margin: 15px;
 }
+
+a {
+  cursor: pointer;
+}

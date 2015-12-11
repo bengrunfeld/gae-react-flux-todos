@@ -3,21 +3,16 @@ var React = require('react');
 var AppActions = require('../actions/app-actions');
 
     var Todo = React.createClass({
-      onDeleteClick: function(todo){
-        AppActions.deleteTodo({id: todo.target.className});
-        // Change state and call a render with setState
-
-      },
       checkInput: function(todo){
         // Check if what was entered is a number
-        //console.log(todo.target.value);
       },
       updateTodo: function(todo){
         var targetClass = '.' + todo.target.className;
         var newTodo = {id: todo.target.className, todoText: $(targetClass).val()};
         AppActions.updateTodo(newTodo);
-
-        // NEXT: Send Todo id to backend to be deleted, then re-render the UI
+      },
+      onDeleteClick: function(todo){
+        AppActions.deleteTodo({id: todo.target.className});
       },
       render:function(){
         return (

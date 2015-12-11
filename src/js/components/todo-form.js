@@ -6,7 +6,7 @@ var TodoForm = React.createClass({
     e.preventDefault();
 
     // Grab value from form
-    var todoText = this.refs.todoText.getDOMNode().value.trim();
+    var todoText = this.refs.todoText.value.trim();
 
     // If empty, bail
     if (!todoText) {
@@ -17,7 +17,7 @@ var TodoForm = React.createClass({
     this.props.onTodoSubmit({todoText: todoText});
 
     // Reset the form
-    this.refs.todoText.getDOMNode().value = '';
+    this.refs.todoText.value = '';
   },
   render:function(){
     return (
