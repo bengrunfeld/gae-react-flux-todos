@@ -25,30 +25,17 @@ var TodoBox = React.createClass({
   _onReloadResults: function() {
     AppActions.loadComponentData();
   },
-  optimisticallyUpdate: function(todo){
-    // TODO: V2 feature? Optimistically update the UI
-    //var all_todos = getTodoItems();
-    //all_todos.data.push(todo);
-    //this.setState(all_todos);
-  },
   handleTodoSubmit: function(todo) {
     AppStore.addReloadListener(this._onReloadResults);
 
     AppActions.submitTodoForm(todo);
-
-    // Otherwise data doesn't sync up
-    // TODO: Update database model field name
-    // TODO: Database has been updated. Testing now
-    // todo.title = todo.todoText;
-
-    this.optimisticallyUpdate(todo);
 
     AppStore.removeChangeListener(this._onReloadResults);
   },
   render: function(){
     return (
       <div className="todo-container">
-        <h4>GAE React Flux Todos</h4>
+        <h4>GAE React Flux Todos 2</h4>
         <TodoForm onTodoSubmit={this.handleTodoSubmit} />
         <TodoList data={this.state.data} />
       </div>
