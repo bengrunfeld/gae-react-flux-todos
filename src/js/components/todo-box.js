@@ -28,7 +28,7 @@ var TodoBox = React.createClass({
   render: function(){
     return (
       <div className="todo-container">
-        <h4>GAE React Flux Todos 2</h4>
+        <h4>GAE React Flux Todos</h4>
         <TodoForm onTodoSubmit={this.handleTodoSubmit} />
         <TodoList data={this.state.data} />
       </div>
